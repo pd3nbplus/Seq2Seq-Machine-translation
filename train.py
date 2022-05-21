@@ -1,5 +1,5 @@
 from net import Encoder, Decoder, Seq2Seq, MaskCriterion
-import torch
+import torch, gc
 from preprocessing import Data,Dataset
 import utils
 import os
@@ -59,7 +59,7 @@ def train(model, data, epoches,restore_file='attention'):
             
             # if(it % 5 == 0):
             #     logger.info("Epoch {} / {}, Iteration: {}, Train Loss: {}".format(epoch, epoches, it, loss.item()))
-        logger.info("Epoch {} / {}, Train Loss: {}".format(epoch, epoches, total_loss/total_words))
+        logger.info("Epoch {} / {}, Train Loss: {}".format(epoch+1, epoches, total_loss/total_words))
         utils.save_checkpoint({'epoch': epoch + 1,
                                'state_dict': model.state_dict(),
                                'optim_dict': optimizer.state_dict()},
@@ -105,14 +105,14 @@ if __name__ == '__main__':
 
     logger.info('Loading the datasets...')
     D = Data(en_path,cn_path)
-    datasets = Dataset(D.en_datas,D.cn_datas).dataset
+    datasets = Dataset(D.en_datas,D.cn_datas,4).dataset
     logger.info('Loading complete.')
     
     dropout = 0.2
     embed_size = 50
     enc_hidden_size = 100
     dec_hidden_size = 200
-    num_epochs = 200
+    num_epochs = 20
     lr = 1e-3
 
     encoder = Encoder(vocab_size=D.en_total_words,
