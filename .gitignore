@@ -1,0 +1,6 @@
+# .gitignore
+
+__pycache__/
+data/
+model/
+training-parallel-nc-v12/training/
