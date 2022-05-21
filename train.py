@@ -135,4 +135,4 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
     logger.info('Starting training for {} epoch(s)'.format(num_epochs))
-    train(model, datasets, epoches=num_epochs,restore_file='epoch_0')
+    train(model, datasets, epoches=num_epochs,restore_file='epoch_1')
