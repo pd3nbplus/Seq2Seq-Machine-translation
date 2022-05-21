@@ -55,7 +55,9 @@ def en2cn_translate(Data,model,sentence_id):
 
 if __name__ == '__main__':
     data = Data()
-    restore_path = os.path.join('model', 'epoch_0' + '.pth.tar')
+    restore_path = os.path.join('model', 'epoch_1' + '.pth.tar')
     model = load_model(data,restore_path)
 
-    en2cn_translate(data,model,0)
+    en2cn_translate(data,model,2003)
+    # for i in range(2000,2010):
+    #     print(" ".join([data.inv_en_dict[w] for w in data.en_datas[i]]),"".join([data.inv_cn_dict[w] for w in data.cn_datas[i]]))
